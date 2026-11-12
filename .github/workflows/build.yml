@@ -107,4 +107,8 @@ jobs:
 
   catalog:
     needs: release
+    # catalog.yml pushes the generated registry records back to main; a reusable
+    # workflow only receives the intersection of caller-job and callee permissions.
+    permissions:
+      contents: write
     uses: ./.github/workflows/catalog.yml
