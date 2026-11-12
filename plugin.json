@@ -5,6 +5,9 @@
   "description": "Configure MicroCon UART bridge and monitor status.",
   "author": "xiaox",
   "license": "MIT",
+  "tags": [
+    "utilities"
+  ],
   "runtime": {
     "kind": "process",
     "entry": "bin/plugin"
