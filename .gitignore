@@ -3,6 +3,9 @@
 .idea/
 .vscode/
 
+# Release tooling dependencies
+node_modules/
+
 # Rust build artifacts and the compiled binaries staged into bin/
 /target/
 /bin/oxideterm-microcon-helper
