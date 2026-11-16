@@ -1,5 +1,5 @@
 {
-  "id": "com.oxideterm.microcon-helper",
+  "id": "com.xiaox.microcon-helper",
   "name": "MicroCon Helper",
   "version": "0.3.0",
   "description": "Configure MicroCon UART bridge and monitor status.",
@@ -49,6 +49,6 @@
     ]
   },
   "engines": {
-    "oxideterm": ">=2.3.2"
+    "oxideterm": ">=2.3.3"
   }
 }
