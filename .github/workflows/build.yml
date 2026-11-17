@@ -45,7 +45,7 @@ jobs:
             cp target/release/xiaox-microcon-helper bin/
           fi
       - if: startsWith(github.ref, 'refs/tags/v')
-        run: node scripts/release-plugin.mjs prepare . --name xiaox-microcon-helper
+        run: node scripts/release-plugin.mjs prepare .
       - name: Package Unix plugin
         if: runner.os != 'Windows'
         run: sh scripts/package.sh
