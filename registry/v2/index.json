@@ -22,6 +22,28 @@
         "checksum": "sha256:c31f5b2b4581b6d925163c9db62b0eb38af3c4e4fa920771c3f56e08732d63aa",
         "size": 4660
       }
+    },
+    {
+      "id": "com.xiaox.microcon-helper",
+      "name": "MicroCon Helper",
+      "description": "Configure MicroCon UART bridge and monitor status.",
+      "author": "xiaox",
+      "license": "MIT",
+      "tags": [
+        "utilities"
+      ],
+      "updatedAt": "2026-11-17T08:08:06Z",
+      "listedAt": "2026-11-17T08:08:23.676Z",
+      "latestReleaseAt": "2026-11-17T08:08:06Z",
+      "version": "0.3.1",
+      "engines": {
+        "oxideterm": ">=2.3.3"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/allegrox/microcon-helper/main/registry/v2/plugins/com.xiaox.microcon-helper/e84b17954400275ac155e9bc945a69ce43e101d504a27fdb11ba2eba9a173a31.json",
+        "checksum": "sha256:e84b17954400275ac155e9bc945a69ce43e101d504a27fdb11ba2eba9a173a31",
+        "size": 4608
+      }
     }
   ]
 }

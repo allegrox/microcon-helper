@@ -1,0 +1,102 @@
+{
+  "id": "com.xiaox.microcon-helper",
+  "name": "MicroCon Helper",
+  "description": "Configure MicroCon UART bridge and monitor status.",
+  "author": "xiaox",
+  "license": "MIT",
+  "tags": [
+    "utilities"
+  ],
+  "updatedAt": "2026-11-17T08:08:06Z",
+  "listedAt": "2026-11-17T08:08:23.676Z",
+  "latestReleaseAt": "2026-11-17T08:08:06Z",
+  "version": "0.3.1",
+  "engines": {
+    "oxideterm": ">=2.3.3"
+  },
+  "minOxidetermVersion": "2.3.3",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-aarch64-apple-darwin.zip",
+      "checksum": "sha256:c61d99ffb668f51e28279f8b776fd54d77bc86634c5a42cee421a03d9c0c8537",
+      "size": 376917
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:88759fc83a0b9e2123dbec3de7630e9a87232428cc810976a9a6f221767b02f7",
+      "size": 270676
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:d873299903e84a9b98404ee317188fcc2deff718c1a5cb40a5524d33aa22110e",
+      "size": 403410
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-x86_64-apple-darwin.zip",
+      "checksum": "sha256:b2287e453829883083285fec43dbb2611ead7a7f72c320fceda88cd0bf25dae2",
+      "size": 398882
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:a0e757be20567b9125fa0c6a508bd87f6d961a0e4a06c810e22f94cb13649d2d",
+      "size": 284067
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:79974c29645ba56b3b3cb196411cc4b47f2051f84e2aa8ac013d2751cb02a03a",
+      "size": 418551
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.3.1",
+      "engines": {
+        "oxideterm": ">=2.3.3"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-aarch64-apple-darwin.zip",
+          "checksum": "sha256:c61d99ffb668f51e28279f8b776fd54d77bc86634c5a42cee421a03d9c0c8537",
+          "size": 376917
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:88759fc83a0b9e2123dbec3de7630e9a87232428cc810976a9a6f221767b02f7",
+          "size": 270676
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:d873299903e84a9b98404ee317188fcc2deff718c1a5cb40a5524d33aa22110e",
+          "size": 403410
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-x86_64-apple-darwin.zip",
+          "checksum": "sha256:b2287e453829883083285fec43dbb2611ead7a7f72c320fceda88cd0bf25dae2",
+          "size": 398882
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:a0e757be20567b9125fa0c6a508bd87f6d961a0e4a06c810e22f94cb13649d2d",
+          "size": 284067
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.1/com.xiaox.microcon-helper-0.3.1-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:79974c29645ba56b3b3cb196411cc4b47f2051f84e2aa8ac013d2751cb02a03a",
+          "size": 418551
+        }
+      ]
+    }
+  ]
+}
