@@ -39,13 +39,13 @@ jobs:
       - name: Stage compiled binary into bin/
         shell: bash
         run: |
-          if [ -f target/release/oxideterm-microcon-helper.exe ]; then
-            cp target/release/oxideterm-microcon-helper.exe bin/
+          if [ -f target/release/xiaox-microcon-helper.exe ]; then
+            cp target/release/xiaox-microcon-helper.exe bin/
           else
-            cp target/release/oxideterm-microcon-helper bin/
+            cp target/release/xiaox-microcon-helper bin/
           fi
       - if: startsWith(github.ref, 'refs/tags/v')
-        run: node scripts/release-plugin.mjs prepare .
+        run: node scripts/release-plugin.mjs prepare . --name xiaox-microcon-helper
       - name: Package Unix plugin
         if: runner.os != 'Windows'
         run: sh scripts/package.sh

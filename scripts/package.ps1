@@ -13,7 +13,7 @@ if ($Manifest.version -notmatch "^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\
     throw "Invalid plugin version"
 }
 
-$BinaryName = "oxideterm-microcon-helper"
+$BinaryName = "xiaox-microcon-helper"
 $BinaryPath = Join-Path $PluginRoot "bin/$BinaryName.exe"
 if (-not (Test-Path $BinaryPath)) {
     throw "Missing compiled binary $BinaryPath; run: cargo build --release --locked"

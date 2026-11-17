@@ -8,8 +8,8 @@ node_modules/
 
 # Rust build artifacts and the compiled binaries staged into bin/
 /target/
-/bin/oxideterm-microcon-helper
-/bin/oxideterm-microcon-helper.exe
+/bin/xiaox-microcon-helper
+/bin/xiaox-microcon-helper.exe
 
 # Plugin packages
 /dist/
