@@ -22,7 +22,7 @@ struct Host {
 
 impl Host {
     fn spawn() -> Host {
-        let mut child = Command::new(env!("CARGO_BIN_EXE_oxideterm-microcon-helper"))
+        let mut child = Command::new(env!("CARGO_BIN_EXE_xiaox-microcon-helper"))
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::inherit())
