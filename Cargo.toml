@@ -1,6 +1,6 @@
 [package]
-name = "xiaox-microcon-helper"
-version = "0.3.1"
+name = "microcon-helper"
+version = "0.3.2"
 edition = "2024"
 license = "MIT"
 description = "MicroCon BLE UART bridge baud-rate control plugin for OxideTerm"
@@ -9,5 +9,5 @@ description = "MicroCon BLE UART bridge baud-rate control plugin for OxideTerm"
 serde_json = "1"
 
 [[bin]]
-name = "xiaox-microcon-helper"
+name = "microcon-helper"
 path = "src/main.rs"

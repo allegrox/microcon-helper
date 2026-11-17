@@ -8,7 +8,7 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 plugin_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
 manifest_path="$plugin_root/plugin.json"
 dist_dir="$plugin_root/dist"
-binary_name=xiaox-microcon-helper
+binary_name=microcon-helper
 binary_path="$plugin_root/bin/$binary_name"
 # Publish one archive per platform target so the marketplace record can map
 # each ZIP to its tested Rust target triple.

@@ -39,10 +39,10 @@ jobs:
       - name: Stage compiled binary into bin/
         shell: bash
         run: |
-          if [ -f target/release/xiaox-microcon-helper.exe ]; then
-            cp target/release/xiaox-microcon-helper.exe bin/
+          if [ -f target/release/microcon-helper.exe ]; then
+            cp target/release/microcon-helper.exe bin/
           else
-            cp target/release/xiaox-microcon-helper bin/
+            cp target/release/microcon-helper bin/
           fi
       - if: startsWith(github.ref, 'refs/tags/v')
         run: node scripts/release-plugin.mjs prepare .
