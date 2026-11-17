@@ -1,0 +1,102 @@
+{
+  "id": "com.oxideterm.microcon-helper",
+  "name": "MicroCon Helper",
+  "description": "Configure MicroCon UART bridge and monitor status.",
+  "author": "xiaox",
+  "license": "MIT",
+  "tags": [
+    "utilities"
+  ],
+  "updatedAt": "2026-11-17T06:56:40Z",
+  "listedAt": "2026-11-17T06:56:55.170Z",
+  "latestReleaseAt": "2026-11-17T06:56:40Z",
+  "version": "0.3.0",
+  "engines": {
+    "oxideterm": ">=2.3.2"
+  },
+  "minOxidetermVersion": "2.3.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:319e84ac8ec4bd85786360fe57a20b112254f7d97540b047511e2e0f68a9d0af",
+      "size": 376821
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:fa05929d39a6558eee61f31d7d1be5f66154f6101beff8f6c1f559adf34397ae",
+      "size": 270699
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:781d71dabeda6636daa9e6dfb40d1a7d81508f3e705ee1e3a69e5c11e0adc4d0",
+      "size": 402852
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:757b2b0993af6ec538a69f05fa100d80a933932eacfcc1ac25801702d8be3050",
+      "size": 398814
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:30ae0ac8104e7b24367a4cb11b78330015fb14de4d0c9aaafa23a9ca7b141f56",
+      "size": 284081
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:def4a012bafd442c2a51fd7995acb8c4bd7473d199264b2a7f2a7de57df00ac9",
+      "size": 418529
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.3.0",
+      "engines": {
+        "oxideterm": ">=2.3.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:319e84ac8ec4bd85786360fe57a20b112254f7d97540b047511e2e0f68a9d0af",
+          "size": 376821
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:fa05929d39a6558eee61f31d7d1be5f66154f6101beff8f6c1f559adf34397ae",
+          "size": 270699
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:781d71dabeda6636daa9e6dfb40d1a7d81508f3e705ee1e3a69e5c11e0adc4d0",
+          "size": 402852
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:757b2b0993af6ec538a69f05fa100d80a933932eacfcc1ac25801702d8be3050",
+          "size": 398814
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:30ae0ac8104e7b24367a4cb11b78330015fb14de4d0c9aaafa23a9ca7b141f56",
+          "size": 284081
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.0/com.oxideterm.microcon-helper-0.3.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:def4a012bafd442c2a51fd7995acb8c4bd7473d199264b2a7f2a7de57df00ac9",
+          "size": 418529
+        }
+      ]
+    }
+  ]
+}
