@@ -1,7 +1,7 @@
 {
   "id": "com.xiaox.microcon-helper",
   "name": "MicroCon Helper",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Configure MicroCon UART bridge and monitor status.",
   "author": "xiaox",
   "license": "MIT",
@@ -49,6 +49,6 @@
     ]
   },
   "engines": {
-    "oxideterm": ">=2.3.3"
+    "oxideterm": ">=2.4.0"
   }
 }
