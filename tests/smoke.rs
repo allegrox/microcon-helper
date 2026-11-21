@@ -769,6 +769,40 @@ fn mc_command_round_trip() {
         sessions_call.pointer("/payload/requestId").and_then(Value::as_str).unwrap(),
         json!({ "sessions": [ { "sessionId": "t9", "deviceName": "MicroCon-X", "connected": true } ] }),
     );
+    // Off is the default chip state, so the plugin must NOT have registered
+    // the input interceptor during activation: only a pane in Inline owns the
+    // /mc channel. Drive the chip into Inline and watch the registration
+    // appear exactly when the host accepts the reported state.
+    let frames_now: Vec<Value> = host.frames.try_iter().collect();
+    let no_interceptor_yet = host
+        .backlog
+        .lock()
+        .unwrap()
+        .iter()
+        .chain(frames_now.iter())
+        .any(|frame| {
+            frame
+                .pointer("/payload/registration/kind")
+                .and_then(Value::as_str)
+                == Some("terminal-input-interceptor")
+        });
+    assert!(!no_interceptor_yet, "Off must not register the interceptor");
+    host.send(&event(
+        "toolbar.actionClicked",
+        json!({ "actionId": "mc-helper-mode", "paneId": 1, "currentState": "off" }),
+    ));
+    let report = host.expect("chip reports inline", |frame| {
+        frame.pointer("/payload/type").and_then(Value::as_str) == Some("callHostApi")
+            && frame.pointer("/payload/method").and_then(Value::as_str) == Some("reportActionState")
+            && frame.pointer("/payload/args/stateId") == Some(&json!("inline"))
+    });
+    host.reply(
+        report
+            .pointer("/payload/requestId")
+            .and_then(Value::as_str)
+            .unwrap(),
+        json!({}),
+    );
     // The interceptor registration must be announced for the hook to fire.
     host.expect("input interceptor registration", |frame| {
         frame

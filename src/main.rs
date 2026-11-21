@@ -17,7 +17,7 @@
 use serde_json::{Value, json};
 use std::collections::{HashMap, HashSet};
 use std::io::{self, BufRead, Write};
-use std::sync::atomic::{AtomicU64, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::{Arc, Mutex, OnceLock, mpsc};
 use std::time::Duration;
 use std::{process, thread};
@@ -276,6 +276,10 @@ struct Shared {
     // Partial "/..." lines held back from the device, keyed by terminalId
     // (empty string for unknown terminals).
     line_buffers: Mutex<HashMap<String, LineBuffer>>,
+    // Chip state each pane reported most recently; the /mc input interceptor
+    // exists only while at least one pane sits in the Inline state.
+    pane_modes: Mutex<HashMap<u64, String>>,
+    interceptor_registered: AtomicBool,
     stdout_lock: Mutex<()>,
 }
 
@@ -299,6 +303,8 @@ impl Shared {
             next_host_request: AtomicU64::new(0),
             next_command_id: AtomicU64::new(0),
             line_buffers: Mutex::new(HashMap::new()),
+            pane_modes: Mutex::new(HashMap::new()),
+            interceptor_registered: AtomicBool::new(false),
             stdout_lock: Mutex::new(()),
         })
     }
@@ -749,21 +755,9 @@ fn register_view(shared: &Shared) {
         }),
         None,
     );
-    // Terminal input interceptor for the /mc debug channel; the host only
-    // accepts this registration when the manifest declares terminalHooks.
-    write_frame(
-        shared,
-        &json!({
-            "type": "registerContribution",
-            "registration": {
-                "registrationId": "terminal-input-interceptor",
-                "pluginId": plugin_id(),
-                "kind": "terminal-input-interceptor",
-                "metadata": { "command": "microconHelper.input" },
-            }
-        }),
-        None,
-    );
+    // The input interceptor is NOT registered here: every pane starts in the
+    // default Off state and sync_input_interceptor registers it once a pane
+    // reports Inline, so Off/Overlay never touch the typed stream.
     register_tab_view(shared);
     write_frame(shared, &json!({ "type": "runtimeReady" }), None);
 }
@@ -1605,9 +1599,58 @@ fn mc_reboot_inner(shared: &Arc<Shared>, terminal_id: Option<&str>) -> Result<St
 
 const TOOLBAR_ACTION_ID: &str = "mc-helper-mode";
 const TOOLBAR_OVERLAY_STATE: &str = "overlay";
+const TOOLBAR_INLINE_STATE: &str = "inline";
+const INTERCEPTOR_REGISTRATION_ID: &str = "terminal-input-interceptor";
 /// Chip states in manifest declaration order. The host stores and renders
 /// whatever state id this reports back; it never interprets the ids itself.
-const TOOLBAR_STATE_ORDER: [&str; 3] = ["off", "inline", TOOLBAR_OVERLAY_STATE];
+const TOOLBAR_STATE_ORDER: [&str; 3] = ["off", TOOLBAR_INLINE_STATE, TOOLBAR_OVERLAY_STATE];
+
+/// The /mc debug channel is the Inline mode's whole surface, so interception
+/// stays exclusive to it: Overlay replaces it with the card UI and Off
+/// disables the helper entirely. In the other states a typed `/mc ...` line is
+/// forwarded to the device verbatim, exactly like any other text.
+fn interceptor_should_be_active(pane_modes: &HashMap<u64, String>) -> bool {
+    pane_modes.values().any(|mode| mode == TOOLBAR_INLINE_STATE)
+}
+
+/// Registers or disposes the input interceptor so the registered set matches
+/// `interceptor_should_be_active`. The host refreshes terminal hooks whenever
+/// the contribution set changes, so the transition takes effect immediately.
+fn sync_input_interceptor(shared: &Shared) {
+    let want = interceptor_should_be_active(
+        &shared
+            .pane_modes
+            .lock()
+            .unwrap_or_else(|e| e.into_inner()),
+    );
+    if shared.interceptor_registered.swap(want, Ordering::SeqCst) == want {
+        return;
+    }
+    if want {
+        write_frame(
+            shared,
+            &json!({
+                "type": "registerContribution",
+                "registration": {
+                    "registrationId": INTERCEPTOR_REGISTRATION_ID,
+                    "pluginId": plugin_id(),
+                    "kind": "terminal-input-interceptor",
+                    "metadata": { "command": "microconHelper.input" },
+                }
+            }),
+            None,
+        );
+    } else {
+        write_frame(
+            shared,
+            &json!({
+                "type": "disposeContribution",
+                "registrationId": INTERCEPTOR_REGISTRATION_ID,
+            }),
+            None,
+        );
+    }
+}
 
 fn report_next_toolbar_state(shared: &Shared, payload: &Value) {
     if payload.get("actionId").and_then(Value::as_str) != Some(TOOLBAR_ACTION_ID) {
@@ -1647,17 +1690,26 @@ fn report_next_toolbar_state(shared: &Shared, payload: &Value) {
             "stateId": next,
         }),
     );
-    if next == TOOLBAR_OVERLAY_STATE && reported.is_err() {
-        // The host refused the overlay state: undo the placeholder status row
-        // and the visibility flag, so the tab cannot end up frozen with a row
-        // no overlay ticker will ever fill.
-        shared
-            .state
-            .lock()
-            .unwrap_or_else(|e| e.into_inner())
-            .overlay_visible = false;
-        register_tab_view(shared);
+    if reported.is_err() {
+        if next == TOOLBAR_OVERLAY_STATE {
+            // The host refused the overlay state: undo the placeholder status
+            // row and the visibility flag, so the tab cannot end up frozen
+            // with a row no overlay ticker will ever fill.
+            shared
+                .state
+                .lock()
+                .unwrap_or_else(|e| e.into_inner())
+                .overlay_visible = false;
+            register_tab_view(shared);
+        }
+        return;
     }
+    shared
+        .pane_modes
+        .lock()
+        .unwrap_or_else(|e| e.into_inner())
+        .insert(pane_id, next.to_string());
+    sync_input_interceptor(shared);
 }
 
 // Pure state transition of `toolbar.overlayOpened` (the BLE session pick and
@@ -2331,6 +2383,22 @@ mod tests {
                 .unwrap_or_else(|e| e.into_inner())
                 .overlay_visible
         );
+    }
+
+    #[test]
+    fn input_interceptor_gate_is_exclusive_to_inline() {
+        // Regressions caught here: gating on a non-Inline state id, or keeping
+        // interception alive once the Inline pane moved on, would make the /mc
+        // channel coexist with Overlay or survive Off.
+        let mut modes = HashMap::new();
+        assert!(!interceptor_should_be_active(&modes));
+        modes.insert(1, "off".to_string());
+        modes.insert(2, TOOLBAR_OVERLAY_STATE.to_string());
+        assert!(!interceptor_should_be_active(&modes));
+        modes.insert(3, TOOLBAR_INLINE_STATE.to_string());
+        assert!(interceptor_should_be_active(&modes));
+        modes.remove(&3);
+        assert!(!interceptor_should_be_active(&modes));
     }
 
     #[test]
