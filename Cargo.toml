@@ -1,6 +1,6 @@
 [package]
 name = "microcon-helper"
-version = "0.3.3"
+version = "0.3.5"
 edition = "2024"
 license = "MIT"
 description = "MicroCon BLE UART bridge baud-rate control plugin for OxideTerm"

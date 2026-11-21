@@ -34,6 +34,7 @@ try {
         Copy-Item (Join-Path $PluginRoot "bin/$name") (Join-Path $StagingDirectory "bin")
     }
     Copy-Item (Join-Path $PluginRoot "locales") $StagingDirectory -Recurse
+    Copy-Item (Join-Path $PluginRoot "LICENSE") $StagingDirectory
 
     # Windows packages point the manifest entry at the cmd.exe launcher.
     $Manifest.runtime.entry = "bin/plugin.cmd"

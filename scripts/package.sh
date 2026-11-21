@@ -44,6 +44,7 @@ rm -f "$artifact_path"
   cd "$plugin_root"
   zip -X -q -r "$artifact_path" \
     plugin.json \
+    LICENSE \
     bin/plugin \
     bin/plugin.cmd \
     "bin/$binary_name" \
