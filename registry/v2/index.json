@@ -32,17 +32,17 @@
       "tags": [
         "utilities"
       ],
-      "updatedAt": "2026-11-19T09:01:07Z",
+      "updatedAt": "2026-11-21T06:14:59Z",
       "listedAt": "2026-11-17T08:08:23.676Z",
-      "latestReleaseAt": "2026-11-19T09:01:07Z",
-      "version": "0.3.3",
+      "latestReleaseAt": "2026-11-21T06:14:59Z",
+      "version": "0.3.5",
       "engines": {
         "oxideterm": ">=2.4.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/allegrox/microcon-helper/main/registry/v2/plugins/com.xiaox.microcon-helper/ac52249edd42e110271ad16c3f23e8bb5f442a5dfe7858055d126c2beaa82d82.json",
-        "checksum": "sha256:ac52249edd42e110271ad16c3f23e8bb5f442a5dfe7858055d126c2beaa82d82",
-        "size": 9002
+        "downloadUrl": "https://raw.githubusercontent.com/allegrox/microcon-helper/main/registry/v2/plugins/com.xiaox.microcon-helper/43931bf5c4c71dfdfa2c325dabd5ae6d9a5590247aa45de46dbc6e44884f511c.json",
+        "checksum": "sha256:43931bf5c4c71dfdfa2c325dabd5ae6d9a5590247aa45de46dbc6e44884f511c",
+        "size": 11199
       }
     }
   ]
